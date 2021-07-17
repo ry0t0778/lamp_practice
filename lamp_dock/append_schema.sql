@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: mysql
--- 生成日時: 2021 年 7 月 16 日 05:37
+-- 生成日時: 2021 年 7 月 17 日 05:36
 -- サーバのバージョン： 5.7.34
 -- PHP のバージョン: 7.4.20
 
@@ -28,8 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `purchase_details` (
+  `details_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
+  `purchase_price` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -51,6 +53,12 @@ CREATE TABLE `purchase_history` (
 --
 
 --
+-- テーブルのインデックス `purchase_details`
+--
+ALTER TABLE `purchase_details`
+  ADD PRIMARY KEY (`details_id`);
+
+--
 -- テーブルのインデックス `purchase_history`
 --
 ALTER TABLE `purchase_history`
@@ -59,6 +67,12 @@ ALTER TABLE `purchase_history`
 --
 -- ダンプしたテーブルの AUTO_INCREMENT
 --
+
+--
+-- テーブルの AUTO_INCREMENT `purchase_details`
+--
+ALTER TABLE `purchase_details`
+  MODIFY `details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- テーブルの AUTO_INCREMENT `purchase_history`
