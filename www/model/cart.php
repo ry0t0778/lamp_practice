@@ -183,9 +183,10 @@ function insert_purchase_history($db,$user_id){
   $sql="
   INSERT INTO
   purchase_history(
-    user_id
+    user_id,
+    purchase_date
   )
-  VALUES(?)
+  VALUES(?,now())
 ";
 return execute_query($db, $sql,[$user_id]);
 }
