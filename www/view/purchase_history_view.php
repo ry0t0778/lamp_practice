@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <?php include VIEW_PATH . 'templates/head.php'; ?>
+  <title>購入履歴</title>
+  <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'cart.css'); ?>">
+</head>
+
+<body>
+  <?php include VIEW_PATH . 'templates/header_logined.php'; ?>
+  <h1>購入履歴</h1>
+  <div class="container">
+
+    <?php include VIEW_PATH . 'templates/messages.php'; ?>
+
+    <table>
+      <thead>
+        <th>注文番号</th>
+        <th>購入日時</th>
+        <th>合計金額</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <?php foreach ($purchase_history as $value) { ?>
+          <tr>
+            <td><?php print(h($value['order_id'])); ?></td>
+            <td><?php print(h($value['purchase_date'])); ?></td>
+            <td><?php print(h($value['total'])); ?>円</td>
+            <td><a href="purchase_details.php?code=<?php print(h($value['order_id'])); ?>">購入明細</a></td>
+          </tr>
+        <?php } ?>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
