@@ -14,13 +14,13 @@
 
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
 
-    <table>
+    <table class="table table-bordered">
       <thead>
         <th>注文番号</th>
         <th>購入日時</th>
         <th>合計金額</th>
         <th></th>
-      </thead>
+      </thead class="thead-light">
       <tbody>
         <?php foreach ($purchase_history as $value) { ?>
           <tr>
