@@ -15,7 +15,7 @@
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
     <p>注文番号：<?php print(h($order_id)); ?></p>
     <p>購入日時：<?php print(h($purchase_details[0]['purchase_date'])); ?></p>
-    <p>合計金額：<?php print(h($total_price)); ?></p>
+    <p>合計金額：<?php print(h($total_price)); ?>円</p>
     <table class="table table-bordered">
       <thead class="thead-light">
         <th>商品名</th>
