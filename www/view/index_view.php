@@ -17,9 +17,19 @@
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
     <form action="index.php" class="text-right">
       <select name=sorting>
-        <option value="new_arrival_order">新着順</option>
-        <option value="cheaper_price">価格の安い順</option>
-        <option value="higher_price">価格の高い順</option>
+        <?php if ($sorting === '' || $sorting === 'new_arrival_order') { ?>
+          <option value="new_arrival_order">新着順</option>
+          <option value="cheaper_price">価格の安い順</option>
+          <option value="higher_price">価格の高い順</option>
+        <?php } else if ($sorting === 'cheaper_price') { ?>
+          <option value="cheaper_price">価格の安い順</option>
+          <option value="higher_price">価格の高い順</option>
+          <option value="new_arrival_order">新着順</option>
+        <?php } else if ($sorting === 'higher_price') { ?>
+          <option value="higher_price">価格の高い順</option>
+          <option value="new_arrival_order">新着順</option>
+          <option value="cheaper_price">価格の安い順</option>
+        <?php } ?>
       </select>
       <input type="submit" value="並べ替え" class="btn btn-primary">
     </form>
@@ -52,7 +62,6 @@
       </div>
     </div>
   </div>
-
 </body>
 
 </html>
