@@ -46,7 +46,7 @@ function get_items($db, $is_open = false)
   return fetch_all_query($db, $sql);
 }
 
-function get_index_items($db, $sorting)
+function get_index_items($db, $sorting, $page)
 {
   $sql = '
   SELECT
@@ -74,7 +74,30 @@ function get_index_items($db, $sorting)
     ORDER BY created DESC
   ';
   }
-  return fetch_all_query($db, $sql);
+  $sql .= '
+    LIMIT ? ,?
+  ';
+  return fetch_all_query($db, $sql, [$page, MAX_VIEW]);
+}
+
+function get_total_page($db)
+{
+  $sql = '
+  SELECT
+    COUNT(*) AS count
+  FROM items
+  ';
+  return fetch_query($db, $sql);
+}
+
+function get_now_page()
+{
+  if (!isset($_GET['page'])) {
+    $now = 1;
+  } else {
+    $now = $_GET['page'];
+  }
+  return $now;
 }
 
 function get_all_items($db)
@@ -82,9 +105,14 @@ function get_all_items($db)
   return get_items($db);
 }
 
-function get_open_items($db, $sorting)
+function get_open_items($db, $sorting, $now)
 {
-  return get_index_items($db, $sorting);
+  if ($now == 1) {
+    $page = $now - 1;
+  } else {
+    $page = ($now - 1) * MAX_VIEW;
+  }
+  return get_index_items($db, $sorting, $page);
 }
 
 function regist_item($db, $name, $price, $stock, $status, $image)

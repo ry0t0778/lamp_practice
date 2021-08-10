@@ -61,6 +61,36 @@
         <?php } ?>
       </div>
     </div>
+    <div class=text-center>
+      <span>
+        <?php
+        if ($now == $pages) {
+          print $total_page['count'] . '件中' . ((($now - 1) * MAX_VIEW) + 1) . '-' . $total_page['count'] . '件目の商品';
+        } else {
+          print $total_page['count'] . '件中' . ((($now - 1) * MAX_VIEW) + 1) . '-' . $now * MAX_VIEW . '件目の商品';
+        }
+        ?>
+      </span>
+      <?php
+      if($now>1){
+        echo "<a href='?page=".($now-1)."&sorting=$sorting'>前へ</a>";
+      }else{
+        echo '前へ';
+      }
+      for ($n = 1; $n <= $pages; $n++) {
+        if ($now == $n) {
+          echo $now;
+        } else {
+          echo "<a href='?page=$n&sorting=$sorting'>$n</a>";
+        }
+      }
+      if($now<$pages){
+        echo "<a href='?page=".($now+1)."&sorting=$sorting'>次へ</a>";
+      }else{
+        echo '次へ';
+      }
+      ?>
+    </div>
     <h1>人気ランキング</h1>
     <div class="card-deck">
       <div class="row">
