@@ -34,10 +34,10 @@
       <input type="submit" value="並べ替え" class="btn btn-primary">
     </form>
     <div class="card-deck">
-      <div class="row">
+      <div class="row w-100">
         <?php foreach ($items as $item) { ?>
           <div class="col-6 item">
-            <div class="card h-100 text-center">
+            <div class="card h-100 text-center w-100">
               <div class="card-header">
                 <?php print(h($item['name'])); ?>
               </div>
